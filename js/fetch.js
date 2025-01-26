@@ -11,11 +11,22 @@ function fetchData (){
         })
     })
 }
+function singleData (id){
+    return new Promise((resolve, reject)=>{
+        fetch(`https://dummyjson.com/products/${id}`).then((res)=>{
+            return res.json()
+        }).then((data)=>{
+            return data.products
+        }).catch((err)=>{
+            reject(err)
+        })
+    })
+}
 function display(data){
     console.log("from display function", data);
 }
 fetchData().then((data)=>{
     return data;
 }).then((finalData)=>{
-    display(finalData)
+    singleData(1)
 })
